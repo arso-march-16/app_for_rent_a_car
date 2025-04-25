@@ -15,14 +15,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // late GoogleMapController mapController;
-    //
-    // final LatLng _center = const LatLng(-33.86, 151.20);
-    //
-    // void _onMapCreated(GoogleMapController controller) {
-    //   mapController = controller;
-    // }
-
     List<String> slike = [
       'assets/slika1.jpeg',
       'assets/slika2.jpeg',
@@ -59,10 +51,8 @@ class MyApp extends StatelessWidget {
       'Gas',
     ];
 
-    final Color primarnaBoja =
-        Color(0xFF1E88E5); // Ljepša plava za akcije i naslove
-    final Color akcenatBoja = Colors.lightBlue; // Tople žute za isticanje
-    final Color backgroundBoja = Color(0xFF263238); // Tamno siva pozadina
+    final Color primarnaBoja = Color(0xFF1E88E5);
+    final Color akcenatBoja = Colors.lightBlue;
 
     var maksimumLinijaTeksta = 3;
 
