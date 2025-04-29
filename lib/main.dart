@@ -38,7 +38,10 @@ class _KalendarState extends State<Kalendar> {
                 startDate != null && endDate != null
                     ? '${DateFormat("dd.MM.yyyy").format(startDate!)} - ${DateFormat("dd.MM.yyyy").format(endDate!)}'
                     : "Your rental period",
-                style: const TextStyle(fontSize: 16.0),
+                style: const TextStyle(
+                  fontSize: 16.0,
+                  color: Colors.lightBlue,
+                ),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -156,6 +159,9 @@ class MyApp extends StatelessWidget {
 
     final Color primarnaBoja = Color(0xFF1E88E5);
     final Color akcenatBoja = Colors.lightBlue;
+    final Color bojaSlovaUpita = Color(0xFF0277BD);
+
+    //var sirinaUredjaja = MediaQuery.sizeOf(context).width;
 
     var maksimumLinijaTeksta = 3;
 
@@ -240,6 +246,14 @@ class MyApp extends StatelessWidget {
         ),
         appBar: AppBar(
           backgroundColor: primarnaBoja,
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                ))
+          ],
           title: Text(
             "Rent A Car",
             style: GoogleFonts.montserrat(
@@ -266,9 +280,9 @@ class MyApp extends StatelessWidget {
                 width: 400.0,
                 constraints: BoxConstraints(maxWidth: 400.0),
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
+                    border: Border.all(color: Colors.black12),
                     borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.black12),
+                    color: Color(0xFFECEFF1)),
                 padding: EdgeInsets.all(16.0),
                 child: Column(children: [
                   Center(
@@ -276,7 +290,8 @@ class MyApp extends StatelessWidget {
                       label: Text(
                         "Please select your starting location",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.openSans(fontSize: 16.0),
+                        style: GoogleFonts.openSans(
+                            fontSize: 16.0, color: akcenatBoja),
                       ),
                       width: 300.0,
                       menuHeight: 150.0,
@@ -295,7 +310,8 @@ class MyApp extends StatelessWidget {
                       label: Text(
                         "Please select your car type",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.openSans(fontSize: 16.0),
+                        style: GoogleFonts.openSans(
+                            fontSize: 16.0, color: akcenatBoja),
                       ),
                       width: 300.0,
                       menuHeight: 150.0,
@@ -334,7 +350,8 @@ class MyApp extends StatelessWidget {
                       label: Text(
                         "Please select your fuel type",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.openSans(fontSize: 16.0),
+                        style: GoogleFonts.openSans(
+                            fontSize: 16.0, color: akcenatBoja),
                       ),
                       width: 300.0,
                       menuHeight: 150.0,
@@ -353,7 +370,8 @@ class MyApp extends StatelessWidget {
                       label: Text(
                         "Select your preferred gear shifter",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.openSans(fontSize: 16.0),
+                        style: GoogleFonts.openSans(
+                            fontSize: 16.0, color: akcenatBoja),
                       ),
                       width: 300.0,
                       menuHeight: 150.0,
@@ -696,14 +714,15 @@ class MyApp extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
-                              color: Colors.lightBlueAccent,
+                              color: Color(0xFFB3E5FC),
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
                                   'Ask a question',
-                                  style: GoogleFonts.montserrat(fontSize: 40.0),
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 40.0, color: bojaSlovaUpita),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(10.0),
@@ -711,8 +730,9 @@ class MyApp extends StatelessWidget {
                                     children: [
                                       Text(
                                         'Your first and last name',
-                                        style:
-                                            GoogleFonts.poppins(fontSize: 20.0),
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 20.0,
+                                            color: bojaSlovaUpita),
                                       ),
                                       TextField(
                                         decoration: InputDecoration(
@@ -724,8 +744,9 @@ class MyApp extends StatelessWidget {
                                       SizedBox(height: 10.0),
                                       Text(
                                         'Your email',
-                                        style:
-                                            GoogleFonts.poppins(fontSize: 20.0),
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 20.0,
+                                            color: bojaSlovaUpita),
                                       ),
                                       TextField(
                                         decoration: InputDecoration(
@@ -740,7 +761,8 @@ class MyApp extends StatelessWidget {
                                 Text(
                                   'Your message',
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.poppins(fontSize: 20.0),
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 20.0, color: bojaSlovaUpita),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -785,117 +807,145 @@ class MyApp extends StatelessWidget {
               ),
             ),
             SizedBox(width: 20.0),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                padding: EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text("Follow us on social media:"),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () async {
-                                await launchUrl(Uri.parse(
-                                    'https://www.instagram.com/tomcruise/'));
-                              },
-                              icon: SvgPicture.asset(
-                                'assets/instagram.svg',
-                                width: 50.0,
-                                height: 50.0,
-                              ),
-                              iconSize: 50.0,
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Follow us on social media:",
+                        style: GoogleFonts.montserrat(
+                            fontSize: 15.0, color: Color(0xFF304FFE)),
+                        textAlign: TextAlign.center,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            onPressed: () async {
+                              await launchUrl(Uri.parse(
+                                  'https://www.instagram.com/tomcruise/'));
+                            },
+                            icon: SvgPicture.asset(
+                              'assets/instagram.svg',
+                              width: 35.0,
+                              height: 35.0,
                             ),
-                            SizedBox(width: 10.0),
-                            IconButton(
-                              onPressed: () async {
-                                await launchUrl(
-                                    Uri.parse('https://www.x.com/tomcruise/'));
-                              },
-                              icon: SvgPicture.asset(
-                                'assets/icons8-twitterx.svg',
-                                width: 50.0,
-                                height: 50.0,
-                              ),
-                              iconSize: 50.0,
+                            iconSize: 35.0,
+                          ),
+                          SizedBox(width: 10.0),
+                          IconButton(
+                            onPressed: () async {
+                              await launchUrl(
+                                  Uri.parse('https://www.x.com/tomcruise/'));
+                            },
+                            icon: SvgPicture.asset(
+                              'assets/icons8-twitterx.svg',
+                              width: 35.0,
+                              height: 35.0,
                             ),
-                            SizedBox(width: 10.0),
-                            IconButton(
-                              onPressed: () async {
-                                await launchUrl(
-                                    Uri.parse('https://www.github.com/'));
-                              },
-                              icon: SvgPicture.asset(
-                                'assets/icons8-github.svg',
-                                width: 50.0,
-                                height: 50.0,
-                              ),
-                              iconSize: 50.0,
+                            iconSize: 35.0,
+                          ),
+                          SizedBox(width: 10.0),
+                          IconButton(
+                            onPressed: () async {
+                              await launchUrl(
+                                  Uri.parse('https://www.github.com/'));
+                            },
+                            icon: SvgPicture.asset(
+                              'assets/icons8-github.svg',
+                              width: 35.0,
+                              height: 35.0,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(width: 40.0),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text("Meet our sponsors"),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () async {
-                                await launchUrl(
-                                    Uri.parse('https://www.hulu.com/'));
-                              },
-                              icon: SvgPicture.asset(
-                                'assets/hulu-logo-svgrepo-com.svg',
-                                width: 50.0,
-                                height: 50.0,
-                              ),
-                              iconSize: 50.0,
-                            ),
-                            SizedBox(width: 10.0),
-                            IconButton(
-                              onPressed: () async {
-                                await launchUrl(
-                                    Uri.parse('https://www.amazon.com/'));
-                              },
-                              icon: SvgPicture.asset(
-                                'assets/amazon-2-logo-svgrepo-com.svg',
-                                width: 50.0,
-                                height: 50.0,
-                              ),
-                              iconSize: 50.0,
-                            ),
-                            SizedBox(width: 10.0),
-                            IconButton(
-                              onPressed: () async {
-                                await launchUrl(
-                                    Uri.parse('https://www.apple.com/'));
-                              },
-                              icon: SvgPicture.asset(
-                                'assets/apple-black-logo-svgrepo-com.svg',
-                                width: 50.0,
-                                height: 50.0,
-                              ),
-                              iconSize: 50.0,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                    // OVDE POSTAVITI NOVE BLOKOVE U BUDUĆNOSTI
-                  ],
+                            iconSize: 35.0,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+
+                Spacer(), // pravi isti razmak medju elementima reda
+
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Meet our sponsors",
+                        style: GoogleFonts.montserrat(
+                            fontSize: 15.0, color: Color(0xFF304FFE)),
+                        textAlign: TextAlign.center,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            onPressed: () async {
+                              await launchUrl(
+                                  Uri.parse('https://www.hulu.com/'));
+                            },
+                            icon: SvgPicture.asset(
+                              'assets/hulu-logo-svgrepo-com.svg',
+                              width: 35.0,
+                              height: 35.0,
+                            ),
+                            iconSize: 35.0,
+                          ),
+                          SizedBox(width: 10.0),
+                          IconButton(
+                            onPressed: () async {
+                              await launchUrl(
+                                  Uri.parse('https://www.amazon.com/'));
+                            },
+                            icon: SvgPicture.asset(
+                              'assets/amazon-2-logo-svgrepo-com.svg',
+                              width: 35.0,
+                              height: 35.0,
+                            ),
+                            iconSize: 35.0,
+                          ),
+                          SizedBox(width: 10.0),
+                          IconButton(
+                            onPressed: () async {
+                              await launchUrl(
+                                  Uri.parse('https://www.apple.com/'));
+                            },
+                            icon: SvgPicture.asset(
+                              'assets/apple-black-logo-svgrepo-com.svg',
+                              width: 35.0,
+                              height: 35.0,
+                            ),
+                            iconSize: 35.0,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+
+                Spacer(),
+
+                Flexible(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Our contact info",
+                      style: GoogleFonts.montserrat(
+                          fontSize: 15.0, color: Color(0xFF304FFE)),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text("🏠︎ Albert Oaxaca 123, VR"),
+                    Text("📞 +12345678901"),
+                    Text("✉ infod12@abcd.4n"),
+                  ],
+                ))
+
+                // OVDE POSTAVITI NOVE BLOKOVE U BUDUĆNOSTI
+              ],
             ),
             SingleChildScrollView(
               child: Row(
@@ -906,7 +956,9 @@ class MyApp extends StatelessWidget {
                   TextButton(onPressed: () {}, child: Text("Ad Policy")),
                   TextButton(onPressed: () {}, child: Text("Cookie Policy")),
                   Text(
-                      "@ This app is the property of Arsenije Martinović. All rights reserved.")
+                    "@ This app is the property of Arsenije Martinović. All rights reserved.",
+                    style: TextStyle(color: Colors.indigoAccent),
+                  )
                 ],
               ),
             ),
