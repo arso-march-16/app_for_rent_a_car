@@ -42,7 +42,8 @@ dependencies:
   google_maps_flutter: ^2.9.0
   link_text: ^0.2.1
   easy_pie_chart: ^1.0.2
-  intl: ^0.20.2
+  intl: ^0.19.0
+  custom_date_range_picker: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -68,11 +69,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/slika1.jpeg
-    - assets/slika2.jpeg
-    - assets/slika3.jpeg
-    - assets/slika4.jpeg
-    - assets/slika5.jpeg
+    - assets/slika1_suv.jpg
+    - assets/slika2_lim.jpg
+    - assets/slika3_conv.jpg
+    - assets/slika4_family.jpg
+    - assets/slika5_sport.jpg
     - assets/osiguranje.jpg
     - assets/tim.jpeg
     - assets/kupon.jpg

@@ -1,12 +1,115 @@
+import 'dart:math' as math;
+
 import 'package:card_swiper/card_swiper.dart';
+import 'package:custom_date_range_picker/custom_date_range_picker.dart';
 import 'package:easy_pie_chart/easy_pie_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
+}
+
+class Kalendar extends StatefulWidget {
+  const Kalendar({Key? key}) : super(key: key);
+
+  @override
+  _KalendarState createState() => _KalendarState();
+}
+
+class _KalendarState extends State<Kalendar> {
+  DateTime? startDate;
+  DateTime? endDate;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: 12.0),
+        Center(
+          child: SizedBox(
+            width: 300.0,
+            child: ElevatedButton.icon(
+              icon: const Icon(Icons.calendar_today_outlined),
+              label: Text(
+                startDate != null && endDate != null
+                    ? '${DateFormat("dd.MM.yyyy").format(startDate!)} - ${DateFormat("dd.MM.yyyy").format(endDate!)}'
+                    : "Your rental period",
+                style: const TextStyle(fontSize: 16.0),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black87,
+                side: const BorderSide(color: Colors.grey),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+                padding: const EdgeInsets.symmetric(vertical: 14.0),
+              ),
+              onPressed: () {
+                // Get the size of the screen before showing the dialog
+                final screenSize = MediaQuery.of(context).size;
+
+                // Calculate bottom padding to ensure buttons are visible
+                double bottomInset = MediaQuery.of(context).viewInsets.bottom;
+
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      insetPadding: EdgeInsets.only(
+                        left: 16.0,
+                        right: 16.0,
+                        top: (screenSize.height - 530) / 2,
+                        bottom: math.max(bottomInset + 20, 40),
+                      ),
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      child: SizedBox(
+                        width: math.min(screenSize.width - 32, 350),
+                        height: 560, // Fixed height to fit calendar + buttons
+                        child: Material(
+                          color: Colors.white,
+                          child: CustomDateRangePicker(
+                            barrierDismissible: true,
+                            initialEndDate: endDate,
+                            initialStartDate: startDate,
+                            maximumDate:
+                                DateTime.now().add(const Duration(days: 50)),
+                            minimumDate: DateTime.now()
+                                .subtract(const Duration(days: 50)),
+                            backgroundColor: Colors.white,
+                            primaryColor: Colors.lightBlueAccent,
+                            onApplyClick: (start, end) {
+                              setState(() {
+                                startDate = start;
+                                endDate = end;
+                              });
+                              Navigator.of(context).pop();
+                            },
+                            onCancelClick: () {
+                              setState(() {
+                                startDate = null;
+                                endDate = null;
+                              });
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -16,11 +119,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> slike = [
-      'assets/slika1.jpeg',
-      'assets/slika2.jpeg',
-      'assets/slika3.jpeg',
-      'assets/slika4.jpeg',
-      'assets/slika5.jpeg'
+      'assets/slika1_suv.jpg',
+      'assets/slika2_lim.jpg',
+      'assets/slika3_conv.jpg',
+      'assets/slika4_family.jpg',
+      'assets/slika5_sport.jpg'
     ];
 
     List<String> gradovi = [
@@ -205,25 +308,26 @@ class MyApp extends StatelessWidget {
                       }).toList(),
                     ),
                   ),
-                  Center(
-                      child: SizedBox(
-                    width: 300.0,
-                    child: TextField(
-                      keyboardType: TextInputType.datetime,
-                      decoration:
-                          InputDecoration(hintText: "Input your start date..."),
-                    ),
-                  )),
-                  SizedBox(height: 12.0),
-                  Center(
-                      child: SizedBox(
-                    width: 300.0,
-                    child: TextField(
-                      keyboardType: TextInputType.datetime,
-                      decoration:
-                          InputDecoration(hintText: "Input your end date..."),
-                    ),
-                  )),
+                  Kalendar(),
+                  // Center(
+                  //     child: SizedBox(
+                  //   width: 300.0,
+                  //   child: TextField(
+                  //     keyboardType: TextInputType.datetime,
+                  //     decoration:
+                  //         InputDecoration(hintText: "Input your start date..."),
+                  //   ),
+                  // )),
+                  // SizedBox(height: 12.0),
+                  // Center(
+                  //     child: SizedBox(
+                  //   width: 300.0,
+                  //   child: TextField(
+                  //     keyboardType: TextInputType.datetime,
+                  //     decoration:
+                  //         InputDecoration(hintText: "Input your end date..."),
+                  //   ),
+                  // )),
                   SizedBox(height: 12.0),
                   Center(
                     child: DropdownMenu<String>(
