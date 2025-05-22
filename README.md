@@ -15,6 +15,14 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+--Demo Video--
+
+Take a look at the interface developed so far in this Flutter rent-a-car application.
+
+Open rent-a-car-app-video.mp4 to see the effort invested in frontend UX/UI design.
+
+Note: This app is actively being improved. The current design and functionality may differ from what is shown in the demo video.
+
 --How to Run This Flutter App in Google Chrome Using Android Studio--
 
 1. Open the project
